@@ -10,17 +10,25 @@
     <!-- General Sans -->
     <link href="https://api.fontshare.com/css?f[]=general-sans@1&display=swap" rel="stylesheet">
     <!--  -->
-    <title>Soyless Resume</title>
+    <title>Soyless CV</title>
     <!--  -->
     <style>
+        /* KEY VARIABLES */
         :root {
             --font-display: 'General Sans', monospace;
             --font-body: 'General Sans', monospace;
             --line: 0.5px solid #1b1b1b;
+            --gap: calc(var(--sp-1) * 0.5);
         }
 
-        * {
-            -webkit-font-smoothing: subpixel-antialiased;
+        /* SPACING TOKENS */
+        :root {
+            --sp-0: 0.4vw;
+            --sp-1: 1.2vw;
+            --sp-2: 2vw;
+            --sp-3: 3.2vw;
+            --sp-4: 4vw;
+            --sp-5: 8vw;
         }
 
         /* PAGE CONSTRAINTS */
@@ -42,14 +50,18 @@
         }
 
         @media print {
-            #page {
-                /* padding: var(--sc-4); */
-            }
+            /* #page {
+                padding: var(--sc-4);
+            } */
 
             button {
                 display: none;
             }
 
+            /* STRIP WEB ELEMENTS */
+            nav {
+                display: none;
+            }
         }
 
         main {
@@ -59,19 +71,32 @@
 
         /* RELATIVE FONT SIZES */
         h1 {
-            font-size: 4vw;
+            font-size: var(--sp-4) !important;
+            line-height: var(--sp-5) !important;
         }
 
         h2 {
-            font-size: 1.2vw;
-            font-weight: 500;
-            line-height: 2.4vw;
+            font-size: var(--sp-1) !important;
+            font-weight: 600 !important;
+            line-height: var(--sp-2) !important;
+        }
+
+        h3 {
+            font-size: calc(var(--sp-1)* 0.72) !important;
+            font-weight: 560 !important;
+            line-height: var(--sp-1) !important;
+            color: #A1A1A1;
+        }
+
+        h4 {
+            font-size: var(--sp-2);
+            font-weight: 640;
         }
 
         p {
-            font-size: 1.2vw;
-            font-weight: 400;
-            line-height: 2.2vw;
+            font-size: var(--sp-1) !important;
+            font-weight: 400 !important;
+            line-height: calc(var(--sp-2) * 1.08) !important;
         }
 
         /* RAIL | CONTACT */
@@ -94,19 +119,75 @@
         section {
             display: grid;
             grid-template-columns: repeat(12, 1fr);
+            padding-top: var(--sp-1);
+            padding-bottom: var(--sp-1);
+        }
+
+        section>* {
+            padding-top: var(--sp-1);
+        }
+
+        /* OVERLINES */
+        .label,
+        .body,
+        .fragment,
+        .segment {
+            border-top: var(--line);
+        }
+
+        /* GAPS */
+        .label,
+        .fragment {
+            margin-right: var(--gap);
         }
 
         /* LABEL */
         .label {
             grid-column: span 3;
-            border-top: var(--line);
-            margin-right: 0.56vw;
         }
 
         /* BODY */
         .body {
             grid-column: span 9;
-            border-top: var(--line);
+            display: grid;
+            grid-template-columns: repeat(9, 1fr);
+        }
+
+        .body p {
+            grid-column: span 9;
+        }
+
+        #sectionTechnical .body,
+        #sectionCareer .body {
+            border-top: none;
+            padding-top: 0;
+        }
+
+        /* FRAGMENT */
+        .fragment {
+            grid-column: span 3;
+            padding-top: var(--sp-1);
+            padding-right: var(--sp-1);
+        }
+
+        .fragment:nth-child(-n+3) {
+            padding-bottom: var(--sp-1);
+        }
+
+        .fragment h2 {
+            padding-bottom: var(--sp-0);
+        }
+
+        /* CAREER */
+        .segment {
+            grid-column: span 9;
+            padding-top: var(--sp-1);
+            padding-right: var(--sp-1);
+            padding-bottom: var(--sp-1);
+        }
+
+        .segment>* {
+            padding-bottom: var(--sp-0);
         }
 
         /*  */
@@ -114,7 +195,6 @@
 </head>
 
 <body>
-
     <div id="page">
         <!-- TITLE -->
         <header>
@@ -134,21 +214,117 @@
             <div class="label">
                 <h2>summary</h2>
             </div>
-            <div class="body">
-                <p>Remember - you are the expert. It's up to you to decide how and what you test. If you're
-                    feeling stuck, look at the problems you already identified. Could you get test subjects to verify
-                    that
-                    these are actually problems? If they are, maybe you can press them for their preferences? This is
-                    how
-                    you find insights early on.
 
-                    Everyone has their own style of testing, so don't think about what templates to use or what class
-                    activity to refer to, simply state an objective and test for it. ie, "I believe it's hard to find
-                    specific things on the ATO website. Can I confirm this by seeing if a user demonstrates the same
-                    paint
-                    point? If I propose a different flow, will they tell me that's a great idea or suggest something
-                    else?"
+            <div class="body">
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugit saepe quaerat vitae voluptas dolor
+                    natus, laborum officia atque esse? Et fuga non ipsa perspiciatis deserunt aliquid nostrum voluptatum
+                    eveniet impedit.</p>
+                <br />
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure a quae ea quibusdam, harum cum,
+                    corporis delectus commodi temporibus numquam labore deleniti minima error quaerat tenetur
+                    voluptatum! Cumque, enim iure!
                 </p>
+            </div>
+        </section>
+
+        <!-- SECTION | TECHNICAL -->
+        <section id="sectionTechnical">
+            <div class="label">
+                <h2>technical</h2>
+            </div>
+
+            <div class="body">
+                <!-- FRAGMENTS -->
+                <div class="fragment">
+                    <h2>UI Prototyping</h2>
+                    <p>Full stack workflow from day 0 ideation through to go-to-market and launch</p>
+                </div>
+                <div class="fragment">
+                    <h2>UI Prototyping</h2>
+                    <p>Highly proficient across all standard tools</p>
+                </div>
+                <div class="fragment">
+                    <h2>UI Prototyping</h2>
+                    <p>Agile management of specialised design teams in a production environment</p>
+                </div>
+                <div class="fragment">
+                    <h2>UI Prototyping</h2>
+                    <p>Full stack workflow from day 0 ideation through to go-to-market and launch</p>
+                </div>
+                <div class="fragment">
+                    <h2>UI Prototyping</h2>
+                    <p>Full stack workflow from day 0 ideation through to go-to-market and launch</p>
+                </div>
+                <div class="fragment">
+                    <h2>UI Prototyping</h2>
+                    <p>Full stack workflow from day 0 ideation through to go-to-market and launch</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION | CAREER -->
+        <section id="sectionCareer">
+            <div class="label">
+                <h2>career</h2>
+            </div>
+
+            <div class="body">
+                <!-- SEGMENTS -->
+                <div class="segment">
+                    <h2>UI/UX Lead</h2>
+                    <h3>Presents / Adelaide, SA</h3>
+                    <p>→ Oversee the end-to-end development of product GUI, from concept to development</p>
+                    <p>→ Build a proprietary design system/visual language and component library to facilitate rapid
+                        high-fidelity prototyping of cutting-edge AI & machine learning technologies</p>
+                    <p>→ Coordinate in-house design and marketing teams with offshore development teams, including being
+                        responsible for handover and consolidation of major product design milestones</p>
+                </div>
+                <div class="segment">
+                    <h2>UI/UX Lead</h2>
+                    <h3>Presents / Adelaide, SA</h3>
+                    <p>→ Oversee the end-to-end development of product GUI, from concept to development</p>
+                    <p>→ Build a proprietary design system/visual language and component library to facilitate rapid
+                        high-fidelity prototyping of cutting-edge AI & machine learning technologies</p>
+                    <p>→ Coordinate in-house design and marketing teams with offshore development teams, including being
+                        responsible for handover and consolidation of major product design milestones</p>
+                </div>
+                <div class="segment">
+                    <h2>UI/UX Lead</h2>
+                    <h3>Presents / Adelaide, SA</h3>
+                    <p>→ Oversee the end-to-end development of product GUI, from concept to development</p>
+                    <p>→ Build a proprietary design system/visual language and component library to facilitate rapid
+                        high-fidelity prototyping of cutting-edge AI & machine learning technologies</p>
+                    <p>→ Coordinate in-house design and marketing teams with offshore development teams, including being
+                        responsible for handover and consolidation of major product design milestones</p>
+                </div>
+                <div class="segment">
+                    <h2>UI/UX Lead</h2>
+                    <h3>Presents / Adelaide, SA</h3>
+                    <p>→ Oversee the end-to-end development of product GUI, from concept to development</p>
+                    <p>→ Build a proprietary design system/visual language and component library to facilitate rapid
+                        high-fidelity prototyping of cutting-edge AI & machine learning technologies</p>
+                    <p>→ Coordinate in-house design and marketing teams with offshore development teams, including being
+                        responsible for handover and consolidation of major product design milestones</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION | EDUCATION -->
+        <section id="sectionCareer">
+            <div class="label">
+                <h2>education</h2>
+            </div>
+
+            <div class="body">
+                <!-- SEGMENTS -->
+                <div class="segment">
+                    <h2>UI/UX Lead</h2>
+                    <h3>Presents / Adelaide, SA</h3>
+                </div>
+                <div class="segment">
+                    <h2>UI/UX Lead</h2>
+                    <h3>Presents / Adelaide, SA</h3>
+                </div>
             </div>
         </section>
 
