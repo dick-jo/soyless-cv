@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- marlin-css -->
+    <link href="https://cdn.jsdelivr.net/npm/marlin-css@0.5.8/marlin.css" rel="stylesheet" type="text/css">
+    <!-- General Sans -->
+    <link href="https://api.fontshare.com/css?f[]=general-sans@1&display=swap" rel="stylesheet">
+    <!--  -->
+    <title>Soyless Resume</title>
+    <!--  -->
+    <style>
+        :root {
+            --font-display: 'General Sans', monospace;
+            --font-body: 'General Sans', monospace;
+            --line: 0.5px solid #1b1b1b;
+        }
+
+        * {
+            -webkit-font-smoothing: subpixel-antialiased;
+        }
+
+        /* PAGE CONSTRAINTS */
+        #page {
+            /* Enforce A4 aspect ratio */
+            aspect-ratio: 1 / 1.41421;
+            /* Convenient max-width */
+            /* max-width: 1080px; */
+            /* Pad the web preview (replaced with @page margin in print) */
+            padding: var(--sc-4);
+            /* Margin voodoo */
+            margin: var(--sc-6);
+        }
+
+        /* PRINT */
+        @page {
+            size: A4;
+            margin: 8mm;
+        }
+
+        @media print {
+            #page {
+                /* padding: var(--sc-4); */
+            }
+
+            button {
+                display: none;
+            }
+
+        }
+
+        main {
+            padding: var(--sc-4);
+        }
+
+
+        /* RELATIVE FONT SIZES */
+        h1 {
+            font-size: 4vw;
+        }
+
+        h2 {
+            font-size: 1.2vw;
+            font-weight: 500;
+            line-height: 2.4vw;
+        }
+
+        p {
+            font-size: 1.2vw;
+            font-weight: 400;
+            line-height: 2.2vw;
+        }
+
+        /* RAIL | CONTACT */
+
+        #railContact h2 {
+            grid-column: span 3;
+        }
+
+        #railContact .email {
+            font-weight: 600;
+        }
+
+        #railContact .social {
+            grid-column: 10 / 13;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        /* SECTION */
+        section {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+        }
+
+        /* LABEL */
+        .label {
+            grid-column: span 3;
+            border-top: var(--line);
+            margin-right: 0.56vw;
+        }
+
+        /* BODY */
+        .body {
+            grid-column: span 9;
+            border-top: var(--line);
+        }
+
+        /*  */
+    </style>
+</head>
+
+<body>
+
+    <div id="page">
+        <!-- TITLE -->
+        <header>
+            <h1>Richard Jones.</h1>
+        </header>
+        <!-- RAIL | CONTACT -->
+        <div id="railContact" class="grid-12">
+            <h2 class="email">hello@dickjones.com.au</h2>
+            <h2>+61 424 606 054</h2>
+            <div class="social">
+                <h2>Adelaide 5000</h2>
+            </div>
+        </div>
+
+        <!-- SECTION | SUMMARY -->
+        <section id="sectionSummary">
+            <div class="label">
+                <h2>summary</h2>
+            </div>
+            <div class="body">
+                <p>Remember - you are the expert. It's up to you to decide how and what you test. If you're
+                    feeling stuck, look at the problems you already identified. Could you get test subjects to verify
+                    that
+                    these are actually problems? If they are, maybe you can press them for their preferences? This is
+                    how
+                    you find insights early on.
+
+                    Everyone has their own style of testing, so don't think about what templates to use or what class
+                    activity to refer to, simply state an objective and test for it. ie, "I believe it's hard to find
+                    specific things on the ATO website. Can I confirm this by seeing if a user demonstrates the same
+                    paint
+                    point? If I propose a different flow, will they tell me that's a great idea or suggest something
+                    else?"
+                </p>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+
+</html>
