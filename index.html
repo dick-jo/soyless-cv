@@ -6,29 +6,49 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- marlin-css -->
-    <link href="https://cdn.jsdelivr.net/npm/marlin-css@0.5.8/marlin.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/marlin-css@0.7.2/marlin.css" rel="stylesheet" type="text/css">
     <!-- General Sans -->
     <link href="https://api.fontshare.com/css?f[]=general-sans@1&display=swap" rel="stylesheet">
     <!--  -->
     <title>Soyless CV</title>
     <!--  -->
     <style>
-        /* KEY VARIABLES */
+        /* MARLIN OVERRIDES */
         :root {
+            --primary: #1b1b1b;
+            --text: #1b1b1b;
+            --secondary: #969696;
             --font-display: 'General Sans', monospace;
             --font-body: 'General Sans', monospace;
-            --line: 0.5px solid #1b1b1b;
-            --gap: calc(var(--sp-1) * 0.5);
+            --factor-type-h1: 0.42;
+            --factor-type-h3: 0.26;
+            --master-h2-size: var(--master-body-1-size);
+            --master-h2-line-height: var(--master-body-2-line-height);
         }
 
-        /* SPACING TOKENS */
+        /* UNIQUE VARIABLES */
         :root {
-            --sp-0: 0.4vw;
-            --sp-1: 1.2vw;
-            --sp-2: 2vw;
-            --sp-3: 3.2vw;
-            --sp-4: 4vw;
-            --sp-5: 8vw;
+            --gap: calc(var(--sc-1) * 0.5);
+            --line: 0.5px solid var(--primary);
+        }
+
+        /* STYLE INIT */
+        h1 {
+            font-weight: 640;
+        }
+
+        h2 {
+            font-weight: 640;
+        }
+
+        h3 {
+            color: var(--secondary);
+            font-weight: 560;
+        }
+
+        /*  */
+        body {
+            padding: var(--sc-5) var(--sc-6);
         }
 
         /* PAGE CONSTRAINTS */
@@ -39,8 +59,6 @@
             /* max-width: 1080px; */
             /* Pad the web preview (replaced with @page margin in print) */
             padding: var(--sc-4);
-            /* Margin voodoo */
-            margin: var(--sc-6);
         }
 
         /* PRINT */
@@ -49,10 +67,50 @@
             margin: 8mm;
         }
 
+        /* SPACING TOKENS */
+        :root {
+            --sp-0: 0.4vw;
+            --sc-1: 1.2vw;
+            --sp-2: 2vw;
+            --sp-3: 3.2vw;
+            --sp-4: 4vw;
+            --sp-5: 8vw;
+        }
+
         @media print {
-            /* #page {
-                padding: var(--sc-4);
-            } */
+            body {
+                padding: 0;
+            }
+
+            /* RELATIVE FONT SIZES */
+            h1 {
+                font-size: var(--sp-4) !important;
+                line-height: var(--sp-5) !important;
+            }
+
+            h2 {
+                font-size: var(--sc-1) !important;
+                font-weight: 600 !important;
+                line-height: var(--sp-2) !important;
+            }
+
+            h3 {
+                font-size: calc(var(--sc-1)* 0.72) !important;
+                font-weight: 560 !important;
+                line-height: var(--sc-1) !important;
+                color: #A1A1A1;
+            }
+
+            h4 {
+                font-size: var(--sp-2);
+                font-weight: 640;
+            }
+
+            p {
+                font-size: var(--sc-1) !important;
+                font-weight: 400 !important;
+                line-height: calc(var(--sp-2) * 1.08) !important;
+            }
 
             button {
                 display: none;
@@ -68,49 +126,28 @@
             padding: var(--sc-4);
         }
 
-
-        /* RELATIVE FONT SIZES */
-        h1 {
-            font-size: var(--sp-4) !important;
-            line-height: var(--sp-5) !important;
-        }
-
-        h2 {
-            font-size: var(--sp-1) !important;
-            font-weight: 600 !important;
-            line-height: var(--sp-2) !important;
-        }
-
-        h3 {
-            font-size: calc(var(--sp-1)* 0.72) !important;
-            font-weight: 560 !important;
-            line-height: var(--sp-1) !important;
-            color: #A1A1A1;
-        }
-
-        h4 {
-            font-size: var(--sp-2);
-            font-weight: 640;
-        }
-
-        p {
-            font-size: var(--sp-1) !important;
-            font-weight: 400 !important;
-            line-height: calc(var(--sp-2) * 1.08) !important;
+        /* HEADER */
+        header {
+            margin-bottom: var(--sc-3);
         }
 
         /* RAIL | CONTACT */
 
         #railContact h2 {
-            grid-column: span 3;
+            grid-column: span var(--cols-C);
         }
+
+        #railContact>* {
+            margin-bottom: var(--sc-1);
+        }
+
 
         #railContact .email {
             font-weight: 600;
         }
 
         #railContact .social {
-            grid-column: 10 / 13;
+            grid-column: span var(--cols-F);
             display: flex;
             justify-content: flex-end;
         }
@@ -118,13 +155,13 @@
         /* SECTION */
         section {
             display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            padding-top: var(--sp-1);
-            padding-bottom: var(--sp-1);
+            grid-template-columns: repeat(var(--cols-L), 1fr);
+            padding-top: var(--sc-1);
+            padding-bottom: var(--sc-1);
         }
 
         section>* {
-            padding-top: var(--sp-1);
+            padding-top: var(--sc-1);
         }
 
         /* OVERLINES */
@@ -143,18 +180,18 @@
 
         /* LABEL */
         .label {
-            grid-column: span 3;
+            grid-column: span var(--cols-C);
         }
 
         /* BODY */
         .body {
-            grid-column: span 9;
+            grid-column: span var(--cols-I);
             display: grid;
-            grid-template-columns: repeat(9, 1fr);
+            grid-template-columns: repeat(var(--cols-I), 1fr);
         }
 
         .body p {
-            grid-column: span 9;
+            grid-column: span var(--cols-I);
         }
 
         #sectionTechnical .body,
@@ -165,29 +202,53 @@
 
         /* FRAGMENT */
         .fragment {
-            grid-column: span 3;
-            padding-top: var(--sp-1);
-            padding-right: var(--sp-1);
+            grid-column: span var(--cols-C);
+            padding-top: var(--sc-1);
+            padding-right: var(--sc-1);
         }
 
         .fragment:nth-child(-n+3) {
-            padding-bottom: var(--sp-1);
+            padding-bottom: var(--sc-1);
         }
 
         .fragment h2 {
-            padding-bottom: var(--sp-0);
+            padding-bottom: var(--sc-1);
         }
 
         /* CAREER */
         .segment {
-            grid-column: span 9;
-            padding-top: var(--sp-1);
-            padding-right: var(--sp-1);
-            padding-bottom: var(--sp-1);
+            grid-column: span var(--cols-I);
+            padding-top: var(--sc-1);
+            padding-right: var(--sc-1);
+            padding-bottom: var(--sc-1);
         }
 
         .segment>* {
             padding-bottom: var(--sp-0);
+        }
+
+        /* RESPONSIVE */
+
+        @media screen and (max-width: 864px) {
+
+            /* STRIP BORDERS ON MOBILE (to reduce double ups) */
+            .body,
+            .fragment,
+            .segment {
+                border-top: none;
+            }
+
+            section {
+                margin-top: var(--sc-6);
+            }
+
+            .label h2 {
+                display: none;
+            }
+
+            #railContact .social {
+                justify-content: flex-start;
+            }
         }
 
         /*  */
@@ -195,6 +256,7 @@
 </head>
 
 <body>
+
     <div id="page">
         <!-- TITLE -->
         <header>
@@ -202,8 +264,8 @@
         </header>
         <!-- RAIL | CONTACT -->
         <div id="railContact" class="grid-12">
-            <h2 class="email">hello@dickjones.com.au</h2>
-            <h2>+61 424 606 054</h2>
+            <h2 class="email">+61 424 606 054</h2>
+            <h2>hello@dickjones.com.au</h2>
             <div class="social">
                 <h2>Adelaide 5000</h2>
             </div>
@@ -212,7 +274,7 @@
         <!-- SECTION | SUMMARY -->
         <section id="sectionSummary">
             <div class="label">
-                <h2>summary</h2>
+                <h2>Summary</h2>
             </div>
 
             <div class="body">
@@ -230,7 +292,7 @@
         <!-- SECTION | TECHNICAL -->
         <section id="sectionTechnical">
             <div class="label">
-                <h2>technical</h2>
+                <h2>Technical</h2>
             </div>
 
             <div class="body">
@@ -265,7 +327,7 @@
         <!-- SECTION | CAREER -->
         <section id="sectionCareer">
             <div class="label">
-                <h2>career</h2>
+                <h2>Career</h2>
             </div>
 
             <div class="body">
@@ -312,7 +374,7 @@
         <!-- SECTION | EDUCATION -->
         <section id="sectionCareer">
             <div class="label">
-                <h2>education</h2>
+                <h2>Education</h2>
             </div>
 
             <div class="body">
